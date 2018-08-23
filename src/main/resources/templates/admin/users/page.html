@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+
+<head>
+    <title>Admin Page</title>
+
+</head>
+
+<body>
+<section layout:fragment="content">
+
+    <div class="title_left">
+        <h3 th:text="${fullname}"></h3>
+        <a  th:href="@{'/admin/user/page/preview/'+${user.getId()}}" class="btn btn-sm btn-success" >Preview</a></td>
+    </div>
+    <!--<div class="title_right">-->
+        <!--<button  onclick="myFunction()" class="btn btn-success">Add</button>-->
+        <!--&lt;!&ndash;<h3>Tables <small>Some examples to get you started</small></h3>&ndash;&gt;-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <tr>
+                            <th>MUSCOLO</th>
+                            <th>ESERCIZIO</th>
+                            <th>SERIE</th>
+                            <th>RIPETIZIONI</th>
+                            <th>RECUPERO</th>
+                            <th>NOTE</th>
+                            <th>ACTION</th>
+                            <!--<th>DELETE</th>-->
+                        </tr>
+                        <tr th:each="table : ${tables}">
+                            <td th:text="${table.getMuscolo()}"></td>
+                            <td th:text="${table.getEsercizio()}"></td>
+                            <td th:text="${table.getSerie()}"></td>
+                            <td th:text="${table.getRepetizioni()}"></td>
+                            <td th:text="${table.getRecupero()}"></td>
+                            <td th:text="${table.getNote()}"></td>
+                            <td><a  th:href="@{'/admin/user/'+${user.getId()}+'/table/'+${table.getId()}}" class="btn btn-sm btn-danger" >DELETE</a></td>
+                        </tr>
+                        <tr>
+                                <form th:action="@{'edit/'+${user.getId()}}" method="POST" >
+                                <td><input name="muscolo" type="text"/></td>
+                                <td><input name="esercizio" type="text"/></td>
+                                <td><input name="serie" type="text"/></td>
+                                <td><input name="repetizioni" type="text"/></td>
+                                <td><input name="recupero" type="text"/></td>
+                                <td><input name="note" type="text"/></td>
+                                <td><input  type="Submit" class="btn btn-lg btn-primary" value="Save"/></td>
+                                </form>
+                         </tr>
+
+
+                    </table>
+                    <br>
+                    <form th:if="${secondBox} == null"  th:action="@{'/admin/user/secondBox/'+${user.getId()}}" method="POST" class="form-signin">
+                        <h3 class="form-signin-heading">Second Box</h3>
+                        <br/>
+
+                        <input type="hidden" id="id" name="id"
+                               class="form-control" /> <br/>
+                        <input type="text"  th:placeholder="Title"
+                               id="title" name="title" class="form-control" /> <br />
+                        <textarea  th:placeholder="Description"
+                                   id="description" name="description" class="form-control" ></textarea> <br />
+
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Save" type="Submit" th:text="Save"></button>
+                    </form>
+                    <form th:if="${secondBox} != null " th:action="@{'/admin/user/secondBox/'+${user.getId()}}" method="POST" class="form-signin">
+                        <h3 class="form-signin-heading">Second Box</h3>
+                        <br/>
+
+                        <input type="hidden" id="id" name="id"  th:value="${secondBox.getId()}"
+                               class="form-control" /> <br/>
+                        <input type="text" th:value="${secondBox.getTitle()}"  th:placeholder="Title"
+                               id="title1" name="title" class="form-control" /> <br />
+                        <textarea  th:text="${secondBox.getDescription()}" th:placeholder="Description"
+                                   id="description1" name="description" class="form-control" ></textarea> <br />
+
+                        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Save" type="Submit" th:text="Save"></button>
+                    </form>
+                    <div class="row">
+                        <h3 class="form-signin-heading">Second Box</h3>
+                        <br/>
+                        <div class="col-md-6">
+                            <img th:if="${thirdBox}" th:src="@{${thirdBox.getImage()}}" class="img-responsive center-block" width="500" height="500" alt="Logo" />
+                            <form  th:action="@{'/admin/user/thirdBox/upload/'+${user.getId()}}" method="POST" class="form-signin" enctype="multipart/form-data">
+                                <input type="file" name="file" /><br/><br/>
+                                <input type="submit" value="Submit" />
+                            </form>
+                            <div th:if="${message}">
+                                <h2 th:text="${message}"/>
+                            </div>
+                        </div>
+                        <div th:if="${secondBox}" class="col-md-6">
+                            <form  th:action="@{'/admin/user/thirdBox/'+${user.getId()}}" method="POST" class="form-signin">
+                            <h3 class="form-signin-heading">Description</h3>
+                            <br/>
+                                <textarea  th:text="${secondBox.getDescription()}" th:placeholder="Description"
+                                           id="description1" name="description" class="form-control" ></textarea> <br />
+
+                            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Save" type="Submit" th:text="Save"></button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form  th:action="@{'/admin/user/thirdBox/'+${user.getId()}}" method="POST" class="form-signin">
+                                <h3 class="form-signin-heading">Description</h3>
+                                <br/>
+                                <textarea  th:placeholder="Description"
+                                           id="description1" name="description" class="form-control" ></textarea> <br />
+
+                                <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Save" type="Submit" th:text="Save"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+
+</html>

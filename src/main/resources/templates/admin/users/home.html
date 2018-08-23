@@ -1,0 +1,114 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+      <!--xmlns:th="http://www.thymeleaf.org"-->
+      <!--layout:decorator="layout_user">-->
+
+<!--<head>-->
+    <!--<title>Admin Page</title>-->
+
+<!--</head>-->
+
+<!--<body>-->
+<!--<section layout:fragment="content">-->
+
+    <!--Maestro del Fitness-->
+    <!--<div class="row">-->
+        <!--<img th:src="@{/images/gym.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />-->
+    <!--</div>-->
+<!--</section>-->
+<!--<script>-->
+    <!--var isAdmin = [[${isAdmin}]];-->
+    <!--console.log(isAdmin);-->
+    <!--alert(isAdmin)-->
+<!--</script>-->
+<!--</body>-->
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout_user">
+
+<head>
+    <title>Admin Page</title>
+
+</head>
+
+<body>
+<section layout:fragment="content">
+
+    <div class="title_left">
+        <h3 th:text="${fullname}"></h3>
+        <!--<h3>Tables <small>Some examples to get you started</small></h3>-->
+    </div>
+    <!--<div class="title_right">-->
+    <!--<button  onclick="myFunction()" class="btn btn-success">Add</button>-->
+    <!--&lt;!&ndash;<h3>Tables <small>Some examples to get you started</small></h3>&ndash;&gt;-->
+    <!--</div>-->
+    <div class="row" >
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="background: #f6f6f6; color: black;">
+                <div class="x_content">
+
+                    <table th:if="${#lists.size(tables) > 0}" id="datatable" class="table table-striped table-bordered">
+                        <tr>
+                            <th>MUSCOLO</th>
+                            <th>ESERCIZIO</th>
+                            <th>SERIE</th>
+                            <th>RIPETIZIONI</th>
+                            <th>RECUPERO</th>
+                            <th>NOTE</th>
+                            <!--<th>DELETE</th>-->
+                        </tr>
+                        <tr th:each="table : ${tables}">
+                            <td th:text="${table.getMuscolo()}"></td>
+                            <td th:text="${table.getEsercizio()}"></td>
+                            <td th:text="${table.getSerie()}"></td>
+                            <td th:text="${table.getRepetizioni()}"></td>
+                            <td th:text="${table.getRecupero()}"></td>
+                            <td th:text="${table.getNote()}"></td>
+                        </tr>
+
+
+
+                    </table>
+                    <div th:if="${secondBox}" class="row">
+                        <!--<div class="col-md-2"></div>-->
+                        <!--<h3 class="form-signin-heading">Second Box</h3>-->
+                        <div>
+                            <h3  th:text="${secondBox.getTitle()}"></h3>
+                            <p th:text="${secondBox.getDescription()}"></p>
+                        </div>
+                        <!--<div class="col-md-2"></div>-->
+                    </div>
+                    <div th:if="${thirdBox}" class="row">
+                        <h3 class="form-signin-heading">Second Box</h3>
+                        <br/>
+                        <div class="col-md-6">
+                            <img th:if="${thirdBox}" th:src="@{${thirdBox.getImage()}}" class="img-responsive center-block"alt="Logo" />
+
+                        </div>
+                        <div class="col-md-6">
+                                <h3 class="form-signin-heading">Description</h3>
+                                <br/>
+                                <p  th:text="${thirdBox.getDescription()}"></p> <br />
+                        </div>
+                    </div>
+                    <div th:if="${thirdBox}" class="row">
+                        <!--<div class="col-md-2"></div>-->
+                        <!--<h3 class="form-signin-heading">Second Box</h3>-->
+                        <div style="background: #f6f6f6; color: black;" >
+                            <h3>Here will be placed fixed discamer</h3>
+                            <p>Gëzofi i leopardit me re ka një ngjyrë gri të errët ose me ngjyrë të errëta, shpesh të zhdukura kryesisht nga modeli i zezë dhe i errët. Në kokë ka pika të zeza dhe veshët janë të zinj. Rripa të ndara apo të thyera të drejtuara nga këndi i syve mbi faqe, nga këndi i gojës në qafë, dhe përgjatë këmishës në shpatullat jane gri e errët. Rrahjet e zgjatura vazhdojnë poshtë shtyllës kurrizore dhe formojnë një shirit të vetëm mesatar në ijë. Dy blloqe të mëdha të flokëve të errëta në anën e shpatullave janë të theksuara posteriorisht nga një shirit i errët, i cili kalon në shpinën e përparme dhe shpërthehet në pika të parregullta.[8] Këto blloqe që japin modelin e turbullt sugjerojnë emrin anglisht të maces. Pjesa poshte dhe këmbët janë të bardha në gri, dhe bishti është i shënuar me pika të mëdha, të parregullta dhe në forma trekëndore.[9] Këmbët e saj janë të shkurtra dhe të forta duke e lejuar të vrapojë shpejt. Femrat janë pak më të vogla se meshkujt. Ka njolla ne të verdhe prapa vesh</p>
+                        </div>
+                        <!--<div class="col-md-2"></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+
+</html>
