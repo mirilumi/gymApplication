@@ -12,14 +12,14 @@ public class ThirdBox {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "image",nullable = false)
+    @Column(name = "image")
     private String image;
 
-    @Column(name = "description",nullable = false,length = 1000)
+    @Column(name = "description",length = 1000)
     private String description;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 

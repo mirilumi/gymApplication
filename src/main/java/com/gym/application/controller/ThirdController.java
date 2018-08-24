@@ -30,8 +30,14 @@ public class ThirdController {
     @RequestMapping(value="/admin/user/thirdBox/{id}", method = RequestMethod.POST)
     public RedirectView saveTable(@PathVariable Integer id , @Valid ThirdBox thirdBox, BindingResult bindingResult) {
         User user = userService.getOne(id);
-        thirdBox.setUser(user);
-        thirdBoxRepository.saveAndFlush(thirdBox);
+        ThirdBox thirdBox1 = thirdBoxRepository.findAllByUser(user);
+        if(thirdBox1 != null){
+            thirdBox1.setDescription(thirdBox.getDescription());
+            thirdBoxRepository.saveAndFlush(thirdBox1);
+        }else {
+            thirdBox.setUser(user);
+            thirdBoxRepository.saveAndFlush(thirdBox);
+        }
         return new RedirectView(urlRedirect+"/admin/user/page/"+id);
     }
     //Save the uploaded file to this folder

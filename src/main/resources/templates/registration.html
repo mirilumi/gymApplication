@@ -9,17 +9,16 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form th:action="@{/}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-	</form>	
+
 	
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+        <img th:src="@{/images/white_image.png}" class="img-responsive center-block" width="250" height="250" alt="Logo" />
+        <div class="row">
+			<div class="col-md-6 col-md-offset-4">
 				<form autocomplete="off" action="#" th:action="@{/registration}"
 					th:object="${user}" method="post" class="form-horizontal"
 					role="form">
-					<h2>Subscription</h2>
+					<h2>Iscriviti</h2>
 					<div class="form-group">
 						<div class="col-sm-9">
 						<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
@@ -56,7 +55,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Register User</button>
+							<button type="submit" class="btn btn-dark btn-block">Registrati Qui</button>
 						</div>
 					</div>
 					
@@ -64,6 +63,13 @@
 					
 					
 				</form>
+				<div class="form-group">
+					<div class="col-sm-9">
+						<form th:action="@{/}" method="get">
+							<button class="btn btn-md btn-dark btn-block" type="Submit">Vai alla pagina di Login</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

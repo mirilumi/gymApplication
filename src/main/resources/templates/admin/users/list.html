@@ -21,8 +21,8 @@
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Last Name</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
                             <th>Email</th>
                             <th>Action</th>
                             <th>Approved</th>
@@ -33,13 +33,13 @@
                             <td th:text="${user.getLastName()}"></td>
                             <td th:text="${user.getEmail()}"></td>
                             <td>
-                                <a th:href="@{'/admin/user/page/'+${user.getId()}}" class="btn btn-success">Create User Page</a>
+                                <a th:href="@{'/admin/user/page/'+${user.getId()}}" class="btn btn-dark">Crea Pagina</a>
                             </td>
                             <td th:if="${user.getActive() == true}">
-                                <a th:href="@{'/admin/user/approved/'+${user.getId()}}" class="btn btn-success">Make Passive</a>
+                                <a th:href="@{'/admin/user/approved/'+${user.getId()}}" class="btn btn-dark">Attiva</a>
                             </td>
                             <td th:if="${user.getActive() == false}">
-                                <a th:href="@{'/admin/user/approved/'+${user.getId()}}" class="btn btn-success">Make Active</a>
+                                <a th:href="@{'/admin/user/approved/'+${user.getId()}}" class="btn btn-dark">Disattiva</a>
                             </td>
                         </tr>
                     </table>
